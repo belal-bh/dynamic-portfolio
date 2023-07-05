@@ -10,7 +10,9 @@ A banner image
 
 A description
 
-## Portfolio: (Add as you wish) [Note: Mandatory a dynamic zone with one or more components]
+## Portfolio: (Add as you wish)
+
+[Note: Mandatory a dynamic zone with one or more components]
 
 ## Contact:
 
