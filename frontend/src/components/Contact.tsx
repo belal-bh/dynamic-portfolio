@@ -1,44 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import { API_CONTACT_PAGE_URL, API_CONTACT_FORM_URL } from "@/config";
+import { API_CONTACT_FORM_URL } from "@/config";
+import { IContactProps } from "@/types/contact";
 
-interface ContactData {
-  title: string;
-  description: string;
-}
-
-const ContactPage: React.FC = () => {
-  const [contactData, setContactData] = useState<ContactData | null>(null);
+const Contact: React.FC<IContactProps> = ({ contactData, error }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [isSubmitting, setSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    fetchContactData();
-  }, []);
-
-  const fetchContactData = async () => {
-    try {
-      const response = await fetch(API_CONTACT_PAGE_URL);
-      if (!response.ok) {
-        throw new Error("Failed to fetch contact data");
-      }
-      const data = await response.json();
-      setContactData(data.data.attributes);
-      setIsLoading(false);
-    } catch (error) {
-      setError("Error fetching contact data");
-      setIsLoading(false);
-    }
-  };
+  const isLoading = !contactData && !error;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError("");
+    setSubmitting(true);
+    setErrorMessage("");
     setSuccessMessage("");
 
     // Replace `API_URL` with your actual API endpoint for form submission
@@ -71,10 +49,10 @@ const ContactPage: React.FC = () => {
       })
       .catch((error) => {
         console.log("error", error);
-        setError("Error submitting the form. Please try again.");
+        setErrorMessage("Error submitting the form. Please try again.");
       })
       .finally(() => {
-        setIsLoading(false);
+        setSubmitting(false);
       });
   };
 
@@ -85,12 +63,13 @@ const ContactPage: React.FC = () => {
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-900"></div>
         </div>
       ) : error ? (
-        <p>{error}</p>
+        <p className="text-red-500 mb-4">{error}</p>
       ) : (
         <>
           {successMessage && (
             <p className="text-green-500 mb-4">{successMessage}</p>
           )}
+          {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
 
           <h1 className="text-2xl font-bold mb-4">{contactData?.title}</h1>
           <p className="mb-4">{contactData?.description}</p>
@@ -136,7 +115,7 @@ const ContactPage: React.FC = () => {
             </div>
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={isSubmitting}
               className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
             >
               Submit
@@ -148,4 +127,4 @@ const ContactPage: React.FC = () => {
   );
 };
 
-export default ContactPage;
+export default Contact;
