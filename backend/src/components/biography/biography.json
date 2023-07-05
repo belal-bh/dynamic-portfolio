@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_biography_biographies",
+  "info": {
+    "displayName": "Biography",
+    "icon": "seed",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Biography"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

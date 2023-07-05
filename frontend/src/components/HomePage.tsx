@@ -35,7 +35,6 @@ const HomePage: React.FC = () => {
         };
         setHomeData(homeData);
         setIsLoading(false);
-        console.log("data", homeData, data);
       })
       .catch((error) => {
         setError("Error fetching home data. Please try again.");

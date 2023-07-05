@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "portfolios",
+  "info": {
+    "singularName": "portfolio",
+    "pluralName": "portfolios",
+    "displayName": "Portfolio",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Profile": {
+      "type": "dynamiczone",
+      "components": [
+        "profile.profile"
+      ],
+      "required": true
+    },
+    "Biography": {
+      "type": "dynamiczone",
+      "components": [
+        "biography.biography"
+      ],
+      "required": true
+    }
+  }
+}

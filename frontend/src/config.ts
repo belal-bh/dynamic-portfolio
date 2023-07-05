@@ -5,3 +5,4 @@ export const API_BASE_URL =
 export const API_HOME_PAGE_URL = `${API_BASE_URL}/home/`;
 export const API_CONTACT_PAGE_URL = `${API_BASE_URL}/contact/`;
 export const API_CONTACT_FORM_URL = `${API_BASE_URL}/contact-forms/`;
+export const API_PORTFOLIO_URL = `${API_BASE_URL}/portfolio/`;

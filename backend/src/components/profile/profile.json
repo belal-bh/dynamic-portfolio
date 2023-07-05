@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_profile_profiles",
+  "info": {
+    "displayName": "Profile",
+    "icon": "user",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "designation": {
+      "type": "string"
+    }
+  }
+}
